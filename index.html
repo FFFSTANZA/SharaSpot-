@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SharaSpot - Launching Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1b1b2f, #162447);
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .background-circles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      animation: float 20s linear infinite;
+    }
+
+    .circle:nth-child(1) {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      left: -100px;
+    }
+    .circle:nth-child(2) {
+      width: 600px;
+      height: 600px;
+      bottom: -200px;
+      right: -200px;
+    }
+
+    @keyframes float {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    .container {
+      max-width: 700px;
+      text-align: center;
+      padding: 40px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #00ffd1;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .countdown div {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #00ffd1;
+      box-shadow: 0 0 10px rgba(0, 255, 209, 0.2);
+    }
+
+    .footer {
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-circles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <div class="container">
+    <h1><span class="highlight">SharaSpot</span> is Launching Soon</h1>
+    <p>
+      Turn your free space into a parking spot. Reserve and earn through our WhatsApp-based smart bot.<br><br>
+      Meet <strong>Shara AI</strong> – your smart assistant for rewriting, summarizing, chatting, clearing doubts, and more.<br><br>
+      Switch to <strong>Parking Mode</strong> for effortless reservations and space listings, powered by real-time location.<br><br>
+      <em>Wherever You Drive, Park Nearby</em>.
+    </p>
+
+    <div class="countdown" id="countdown">
+      <div><span id="days">00</span><br>Days</div>
+      <div><span id="hours">00</span><br>Hours</div>
+      <div><span id="minutes">00</span><br>Minutes</div>
+      <div><span id="seconds">00</span><br>Seconds</div>
+    </div>
+
+    <div class="footer">
+        <div>&copy; 2025 <span>SharaSpot</span></div>
+        <br>
+        <div>Powered by <span>Folonite</span></div>
+        <div>Made with ❤️ using <span>Folonite.js</span></div>
+      </div>
+    </div>
+
+  <script>
+    const launchDate = new Date("May 9, 2025 00:00:00").getTime();
+    const countdown = () => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(days).padStart(2, '0');
+      document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "<div>We Are Live Now!</div>";
+      }
+    };
+    setInterval(countdown, 1000);
+  </script>
+</body>
+</html>
